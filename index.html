@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Yoga dla Agaty – 40 urodziny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Ikony -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #fdfcfb;
+            --bg-soft: #f7fbff;
+            --accent: #7bc6b7;
+            --accent-soft: rgba(123, 198, 183, 0.18);
+            --accent-strong: #4f9487;
+            --text: #1e293b;
+            --muted: #64748b;
+            --card: rgba(255, 255, 255, 0.94);
+            --radius-lg: 22px;
+            --radius-md: 16px;
+            --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+            --gradient: linear-gradient(135deg, #7bc6b7, #b39ddb);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at 0% 0%, #e0f2fe 0, transparent 55%),
+                radial-gradient(circle at 100% 0%, #f5e1ff 0, transparent 55%),
+                radial-gradient(circle at 0% 100%, #d1fae5 0, transparent 55%),
+                radial-gradient(circle at 100% 100%, #fee2e2 0, transparent 55%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(16px);
+            background: linear-gradient(to right, rgba(255,255,255,0.96), rgba(248,250,252,0.94));
+            border-bottom: 1px solid rgba(148,163,184,0.3);
+        }
+
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--accent-strong);
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 0%, #fef3c7, #f97316 40%, #fb7185 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(248, 113, 113, 0.5);
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            font-size: 0.92rem;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 999px;
+            transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: rgba(191, 219, 254, 0.7);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.nav-cta {
+            background: var(--gradient);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 10px 26px rgba(148, 163, 184, 0.4);
+        }
+
+        .nav-links a.nav-cta:hover {
+            transform: translateY(-1px) scale(1.01);
+        }
+
+        /* Layout */
+        main {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 24px 20px 60px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .section-heading {
+            font-size: 1.9rem;
+            margin: 0 0 14px;
+        }
+
+        .section-sub {
+            margin: 0 0 24px;
+            color: var(--muted);
+            max-width: 540px;
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.6fr);
+            gap: 32px;
+            align-items: center;
+            padding-top: 18px;
+        }
+
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(148,163,184,0.5);
+            color: var(--muted);
+        }
+
+        .hero-chip .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 6px rgba(34,197,94,0.9);
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 3vw + 1.1rem, 3rem);
+            line-height: 1.1;
+            margin: 14px 0 14px;
+        }
+
+        .hero-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text {
+            color: var(--muted);
+            font-size: 0.98rem;
+            max-width: 520px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #ffffff;
+            box-shadow: 0 16px 32px rgba(148, 163, 184, 0.45);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.015);
+        }
+
+        .btn-ghost {
+            background: rgba(255,255,255,0.9);
+            color: var(--muted);
+            border: 1px solid rgba(148,163,184,0.5);
+        }
+
+        .btn-ghost:hover {
+            background: #ffffff;
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+
+        .hero-note {
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        .hero-media {
+            position: relative;
+        }
+
+        .hero-card {
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            background: radial-gradient(circle at top, rgba(219,234,254,0.7), transparent 60%), var(--card);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 260px;
+            border-radius: 18px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid rgba(148,163,184,0.4);
+        }
+
+        .hero-pill {
+            position: absolute;
+            bottom: 12px;
+            left: 24px;
+            right: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(148,163,184,0.4);
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .hero-pill span strong {
+            color: var(--text);
+        }
+
+        .badge-float {
+            position: absolute;
+            top: -12px;
+            right: 6px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            background: rgba(255,255,255,0.96);
+            border: 1px solid rgba(148,163,184,0.5);
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            padding: 20px 22px;
+            border: 1px solid rgba(148,163,184,0.35);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            margin: 6px 0;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .card-footer {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .signature {
+            margin-top: 6px;
+            font-size: 0.9rem;
+        }
+
+        /* Propozycje */
+        .retreat-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+            font-size: 0.82rem;
+        }
+
+        .retreat-filters span {
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.35);
+            background: rgba(255,255,255,0.9);
+            color: var(--muted);
+        }
+
+        .retreat-filters span.primary {
+            border-color: rgba(123,198,183,0.9);
+            background: var(--accent-soft);
+            color: var(--accent-strong);
+        }
+
+        .retreat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .retreat-card {
+            position: relative;
+            border-radius: var(--radius-md);
+            background: var(--card);
+            border: 1px solid rgba(148,163,184,0.4);
+            padding: 14px 14px 16px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .retreat-image {
+            width: 100%;
+            height: 150px;
+            border-radius: 14px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .retreat-tag {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .retreat-title {
+            margin: 0 0 6px;
+            font-size: 1.05rem;
+        }
+
+        .retreat-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .pill {
+            padding: 3px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.4);
+            background: rgba(255,255,255,0.9);
+        }
+
+        .retreat-body {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .retreat-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--muted);
+            gap: 8px;
+        }
+
+        .retreat-footer a,
+        .retreat-footer button {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: none;
+            background: #ffffff;
+            color: var(--accent-strong);
+            cursor: pointer;
+            font-size: 0.78rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(148,163,184,0.5);
+            text-decoration: none;
+            transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+        }
+
+        .retreat-footer a:hover,
+        .retreat-footer button:hover {
+            background: var(--gradient);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /* Jak to działa */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+            gap: 26px;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 14px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid rgba(148,163,184,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+
+        .step-body {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .step-body strong {
+            color: var(--text);
+        }
+
+        .faq-note {
+            margin-top: 12px;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        /* Stopka */
+        footer {
+            border-top: 1px solid rgba(148,163,184,0.3);
+            padding: 16px 20px 26px;
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--muted);
+            background: rgba(248,250,252,0.96);
+        }
+
+        /* Responsywność */
+        @media (max-width: 860px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .hero-media {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .nav-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            main {
+                padding-inline: 16px;
+            }
+
+            .grid-2,
+            .faq-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="nav">
+    <div class="nav-inner">
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-spa"></i>
+            </div>
+            <div>Yoga dla Agaty</div>
+        </div>
+        <nav class="nav-links">
+            <a href="#zyczenia">Życzenia</a>
+            <a href="#prezent">Prezent</a>
+            <a href="#wyjazdy">Wyjazdy</a>
+            <a href="#jak-to-dziala">Jak to działa</a>
+            <a href="#kontakt" class="nav-cta">
+                Wybierzmy razem
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+        <div>
+            <div class="hero-chip">
+                <span class="dot"></span>
+                <span>Spokojny wyjazd jogowy na Twoje 40. urodziny</span>
+            </div>
+            <h1 class="hero-title">
+                Agato, ten wyjazd jogowy<br>
+                jest <span>łagodnym prezentem</span> tylko dla Ciebie.
+            </h1>
+            <p class="hero-text">
+                Kilka dni ciszy, oddechu i troski o siebie: joga w naturze, delikatny ruch,
+                dobre jedzenie i przestrzeń na to, żeby naprawdę odpocząć.
+            </p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick="scrollToSection('wyjazdy')">
+                    Zobacz możliwości wyjazdu
+                    <i class="fa-solid fa-arrow-down"></i>
+                </button>
+                <button class="btn btn-ghost" onclick="scrollToSection('zyczenia')">
+                    Przeczytaj życzenia
+                </button>
+            </div>
+            <p class="hero-note">
+                Mamy trzy spokojne propozycje w Bieszczadach i otwartą opcję „coś zupełnie innego”, jeśli serce szepcze o innym miejscu.
+            </p>
+        </div>
+
+        <div class="hero-media">
+            <div class="hero-card">
+                <div class="badge-float">
+                    <span class="badge-dot"></span>
+                    <span>Czas tylko dla Ciebie</span>
+                </div>
+                <!-- Hero image (spokojna joga w naturze) -->
+                <img class="hero-image"
+                     src="https://images.pexels.com/photos/3822621/pexels-photo-3822621.jpeg"
+                     alt="Spokojna praktyka jogi w naturze o zachodzie słońca">
+                <div class="hero-pill">
+                    <span><strong>Joga + natura</strong> + kilka dni oddechu</span>
+                    <span>
+                        Kuba &amp; Gábor
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ŻYCZENIA + PREZENT -->
+    <section id="zyczenia">
+        <p class="section-label">Rozdział 1</p>
+        <h2 class="section-heading">Z okazji Twoich 40. urodzin</h2>
+        <p class="section-sub">
+            Ciche, ale bardzo szczere życzenia i prezent, który zamiast rzeczy daje Ci czas, przestrzeń i łagodność.
+        </p>
+
+        <div class="grid-2">
+            <article class="card">
+                <h3>Agato, wszystkiego, co kojące</h3>
+                <p>
+                    Życzymy Ci, żeby ten kolejny etap był pełen spokoju, lekkości i delikatnej troski o siebie –
+                    takiej, która nie potrzebuje fajerwerków, tylko cichego „jest mi dobrze”.
+                </p>
+                <p>
+                    Niech każdy dzień ma choć kilka chwil tylko dla Ciebie: z oddechem, ciszą i poczuciem,
+                    że możesz zwolnić, kiedy tego potrzebujesz.
+                </p>
+                <div class="card-footer">
+                    <div class="signature">
+                        Z miłością,<br>
+                        <strong>Kuba i Gábor</strong>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card" id="prezent">
+                <h3>Prezent: spokojny wyjazd z jogą</h3>
+                <p>
+                    Zamiast kolejnej rzeczy – chcemy podarować Ci kilka dni poza codziennością:
+                    z jogą, naturą i przestrzenią tylko dla Ciebie.
+                </p>
+                <p>
+                    Wybraliśmy trzy miejsca w Bieszczadach, każde o trochę innym klimacie, oraz opcję wyjazdu w zupełnie inne miejsce,
+                    jeśli poczujesz, że to tam czeka na Ciebie prawdziwy odpoczynek.
+                </p>
+                <p>
+                    Termin, kierunek i styl zajęć dobierzemy razem z Tobą, tak żeby ten czas był dokładnie taki,
+                    jakiego Twoje ciało i głowa teraz najbardziej potrzebują.
+                </p>
+                <div class="card-footer">
+                    <span>
+                        Jeden prezent, kilka dróg – spokojnie wybierzemy tę właściwą.
+                    </span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- WYJAZDY -->
+    <section id="wyjazdy">
+        <p class="section-label">Rozdział 2</p>
+        <h2 class="section-heading">Trzy spokojne miejsca + opcja „coś innego”</h2>
+        <p class="section-sub">
+            Poniżej trzy konkretne kierunki w Bieszczadach oraz możliwość zaplanowania zupełnie innego wyjazdu – ważne, żebyś Ty czuła, że to jest Twoje miejsce.
+        </p>
+
+        <div class="retreat-filters">
+            <span class="primary">Joga &amp; cisza</span>
+            <span>Bieszczady / natura</span>
+            <span>Kameralna atmosfera</span>
+            <span>Termin wybieramy razem</span>
+        </div>
+
+        <div class="retreat-grid">
+            <!-- 1: Grzechowisko -->
+            <article class="retreat-card">
+                <!-- obrazek: spokojna joga w górach / naturze -->
+                <img class="retreat-image"
+                     src="https://images.pexels.com/photos/2035066/pexels-photo-2035066.jpeg"
+                     alt="Joga w górach na tle zielonej doliny">
+                <div class="retreat-tag">Opcja 1</div>
+                <h3 class="retreat-title">Grzechowisko – Joga i Sztuka</h3>
+                <div class="retreat-meta">
+                    <span class="pill">Wetlina / Bieszczady</span>
+                    <span class="pill">Joga + twórczość</span>
+                </div>
+                <p class="retreat-body">
+                    Kameralne miejsce w Bieszczadach, w którym joga spotyka się z twórczością i spokojnymi spotkaniami w małej grupie.[web:30]
+                    Dni płyną tu między praktyką, spacerami a delikatną kreatywnością, która pomaga poukładać myśli.
+                </p>
+                <p class="retreat-body">
+                    Dobre, jeśli szukasz zarówno ukojenia w ciele, jak i łagodnej przestrzeni na wyrażenie siebie.
+                </p>
+                <div class="retreat-footer">
+                    <span>Nasza spokojna baza w Wetlinie</span>
+                    <a href="https://grzechowisko.pl/joga-i-sztuka/#spotkania" target="_blank" rel="noopener">
+                        Zobacz stronę
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- 2: Akacjowe Zacisze -->
+            <article class="retreat-card">
+                <!-- obrazek: joga + wellness / ogród -->
+                <img class="retreat-image"
+                     src="https://images.pexels.com/photos/3820448/pexels-photo-3820448.jpeg"
+                     alt="Joga w ogrodzie w otoczeniu zieleni">
+                <div class="retreat-tag">Opcja 2</div>
+                <h3 class="retreat-title">Akacjowe Zacisze – Joga w Bieszczadach</h3>
+                <div class="retreat-meta">
+                    <span class="pill">Góry Sanocko–Turczańskie</span>
+                    <span class="pill">Joga + masaż + balia</span>
+                    <span class="pill">Pełne wyżywienie</span>
+                </div>
+                <p class="retreat-body">
+                    Spokojny dom z dużym ogrodem i widokiem na wzgórza, gdzie w programie są sesje jogi, pełne wyżywienie,
+                    masaże, sauna i balia.[web:33]
+                    Idealne miejsce, żeby ciało dostało miękki ruch, a głowa – poczucie, że wszystko jest zaopiekowane.
+                </p>
+                <p class="retreat-body">
+                    Dobre, jeśli marzy Ci się wyjazd „wszystko w jednym”: joga, wellness, natura i nic do organizowania po Twojej stronie.
+                </p>
+                <div class="retreat-footer">
+                    <span>Spokojny pakiet z wellness</span>
+                    <a href="https://akacjowezacisze.pl/joga-w-bieszczadach/" target="_blank" rel="noopener">
+                        Zobacz stronę
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- 3: Joga w Bieszczadach / Blissko Natury -->
+            <article class="retreat-card">
+                <!-- obrazek: joga nad wodą / szeroka przestrzeń -->
+                <img class="retreat-image"
+                     src="https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg"
+                     alt="Medytacja nad wodą w górach o świcie">
+                <div class="retreat-tag">Opcja 3</div>
+                <h3 class="retreat-title">Blissko Natury – Joga w Bieszczadach</h3>
+                <div class="retreat-meta">
+                    <span class="pill">Połoniny Resort</span>
+                    <span class="pill">Slow Flow + Yin</span>
+                </div>
+                <p class="retreat-body">
+                    Kameralne warsztaty w Połoniny Resort z porannym Slow Flow, wieczorną yin jogą i jogą powięziową,
+                    często z aromaterapią i czasem na zanurzenie się w naturze.[web:42]
+                </p>
+                <p class="retreat-body">
+                    Idealne, jeśli Twoje ciało potrzebuje łagodnego, uważnego ruchu, dużo relaksu i poczucia bycia w środku zielonej, cichej przestrzeni.[web:37]
+                </p>
+                <div class="retreat-footer">
+                    <span>Delikatny, powolny rytm</span>
+                    <a href="https://jogawbieszczadach.pl/oferta/" target="_blank" rel="noopener">
+                        Zobacz stronę
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- 4: Coś zupełnie innego -->
+            <article class="retreat-card">
+                <!-- obrazek: joga nad morzem / szeroki horyzont -->
+                <img class="retreat-image"
+                     src="https://images.pexels.com/photos/2908176/pexels-photo-2908176.jpeg"
+                     alt="Joga nad morzem o wschodzie słońca">
+                <div class="retreat-tag">Opcja 4</div>
+                <h3 class="retreat-title">Coś zupełnie innego</h3>
+                <div class="retreat-meta">
+                    <span class="pill">Morze, inne góry lub inny kraj</span>
+                    <span class="pill">Joga lub inna forma odpoczynku</span>
+                </div>
+                <p class="retreat-body">
+                    Jeśli czujesz, że Twoje miejsce jest gdzie indziej – nad morzem, w innym kraju, może u konkretnej nauczycielki
+                    lub w miejscu, które zawsze chciałaś odwiedzić – usiądziemy i stworzymy ten wyjazd od początku.
+                </p>
+                <p class="retreat-body">
+                    Możemy szukać cichego retreatu nad ciepłym morzem, spokojnego pensjonatu w innych górach
+                    albo zaplanować indywidualny wyjazd tylko dla Ciebie.
+                </p>
+                <div class="retreat-footer">
+                    <span>Wyjazd szyty na miarę</span>
+                    <button type="button" onclick="scrollToSection('kontakt')">
+                        Porozmawiajmy o Twoim miejscu
+                        <i class="fa-solid fa-comments"></i>
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Jak to działa / kontakt -->
+    <section id="jak-to-dziala">
+        <p class="section-label">Rozdział 3</p>
+        <h2 class="section-heading">Jak to działa, bardzo spokojnie</h2>
+        <p class="section-sub">
+            Nic nie musisz klikać ani rezerwować – ta strona jest jak łagodna kartka urodzinowa. Wystarczy, że powiesz, co z Tobą najbardziej rezonuje.
+        </p>
+
+        <div class="faq-grid">
+            <div>
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-body">
+                            <strong>Najpierw – Ty</strong><br>
+                            Powiedz nam, co czujesz: który z wyjazdów jest Ci najbliższy,
+                            albo jakiego rodzaju odpoczynku szukasz (więcej ciszy, więcej wody, więcej ruchu).
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-body">
+                            <strong>Potem – miejsce i termin</strong><br>
+                            Razem wybieramy konkretny warsztat albo tworzymy nową opcję. Sprawdzamy terminy, dostępność,
+                            logistykę – tak, żeby całość była dla Ciebie spokojna i realna.
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-body">
+                            <strong>Na końcu – odpoczynek</strong><br>
+                            Rezerwacje i szczegóły bierzemy na siebie. Ty tylko pakujesz to, czego potrzebujesz,
+                            i przez kilka dni możesz naprawdę odłożyć „codzienność” na bok.
+                        </div>
+                    </li>
+                </ul>
+                <p class="faq-note">
+                    Ten prezent nie ma sztywnej daty – wybierzemy moment, który da Ci poczucie przestrzeni,
+                    a nie kolejnego punktu w kalendarzu.
+                </p>
+            </div>
+
+            <article class="card" id="kontakt">
+                <h3>Twoje tempo, nasza organizacja</h3>
+                <p>
+                    Wystarczy, że powiesz nam, co wybierasz – albo że jeszcze nie wiesz i chcesz spokojnie
+                    przegadać różne możliwości. Ta strona ma przypomnieć Ci, że ten wyjazd naprawdę na Ciebie czeka.
+                </p>
+                <p>
+                    A my z radością dopilnujemy szczegółów, żebyś mogła po prostu wyjechać, odetchnąć i wrócić
+                    z poczuciem, że zrobiłaś dla siebie coś naprawdę dobrego.
+                </p>
+                <div class="card-footer">
+                    <span>
+                        PS. Jeśli będzie trzeba, zrobimy też za Twoich osobistych „kierowców na dworzec”.
+                    </span>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Yoga dla Agaty · z miłością – Kuba i Gábor · 40 spokojnych + jeszcze więcej przed Tobą
+</footer>
+
+<script>
+    function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        window.scrollTo({
+            top: el.offsetTop - 70,
+            behavior: "smooth"
+        });
+    }
+</script>
+
+</body>
+</html>
