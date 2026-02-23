@@ -554,6 +554,9 @@
 </head>
 <body>
 
+<!-- WSZYSTKO, CO MA BYĆ UKRYTE (NAV + MAIN + FOOTER) -->
+<div id="page-wrapper">
+
 <header class="nav">
     <div class="nav-inner">
         <div class="brand">
@@ -574,7 +577,7 @@
     </div>
 </header>
 
-<main>
+<main id="main-content">
     <!-- HERO -->
     <section class="hero" id="top">
         <div>
@@ -732,7 +735,7 @@
                 </div>
                 <p class="retreat-body">
                     Spokojny dom z dużym ogrodem i widokiem na wzgórza, gdzie w programie są sesje jogi, pełne wyżywienie,
-                    masaże, sauna i balia.[web:33]
+                    masaże, sauna i balia.
                     Idealne miejsce, żeby ciało dostało miękki ruch, a głowa – poczucie, że wszystko jest zaopiekowane.
                 </p>
                 <p class="retreat-body">
@@ -761,10 +764,10 @@
                 </div>
                 <p class="retreat-body">
                     Kameralne warsztaty w Połoniny Resort z porannym Slow Flow, wieczorną yin jogą i jogą powięziową,
-                    często z aromaterapią i czasem na zanurzenie się w naturze.[web:42]
+                    często z aromaterapią i czasem na zanurzenie się w naturze.
                 </p>
                 <p class="retreat-body">
-                    Idealne, jeśli Twoje ciało potrzebuje łagodnego, uważnego ruchu, dużo relaksu i poczucia bycia w środku zielonej, cichej przestrzeni.[web:37]
+                    Idealne, jeśli Twoje ciało potrzebuje łagodnego, uważnego ruchu, dużo relaksu i poczucia bycia w środku zielonej, cichej przestrzeni.
                 </p>
                 <div class="retreat-footer">
                     <span>Delikatny, powolny rytm</span>
@@ -872,6 +875,11 @@
     Yoga dla Agaty · z miłością – Kuba i Gábor · 40 spokojnych + jeszcze więcej przed Tobą
 </footer>
 
+</div> <!-- /page-wrapper – to wszystko znika przy odliczaniu -->
+
+<!-- EKRAN Z ŻYCZENIAMI + ZEGAREM -->
+<div id="countdown-wrapper" style="display:none;"></div>
+
 <script>
     function scrollToSection(id) {
         const el = document.getElementById(id);
@@ -881,6 +889,144 @@
             behavior: "smooth"
         });
     }
+</script>
+
+<!-- SKRYPT UKRYWAJĄCY CAŁĄ STRONĘ DO 24.02.2026 17:00 + ŻYCZENIA I ZEGAR -->
+<script>
+  (function () {
+    // 24 lutego 2026, 17:00 (czas lokalny przeglądarki)
+    var unlockTime = new Date(2026, 1, 24, 18, 30, 0).getTime();
+
+    var pageWrapper = document.getElementById('page-wrapper');
+    var countdownWrapper = document.getElementById('countdown-wrapper');
+
+    if (!pageWrapper || !countdownWrapper) return;
+
+    function pad(n) {
+      return n < 10 ? '0' + n : n;
+    }
+
+    function renderCountdown() {
+      var now = Date.now();
+      var diff = unlockTime - now;
+
+      if (diff <= 0) {
+        countdownWrapper.style.display = 'none';
+        pageWrapper.style.display = '';
+        return;
+      }
+
+      var seconds = Math.floor(diff / 1000);
+      var days = Math.floor(seconds / 86400);
+      seconds %= 86400;
+      var hours = Math.floor(seconds / 3600);
+      seconds %= 3600;
+      var minutes = Math.floor(seconds / 60);
+      seconds = seconds % 60;
+
+      countdownWrapper.innerHTML = `
+        <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2.5rem 1.5rem;">
+          <div style="
+            max-width:780px;width:100%;
+            background:radial-gradient(circle at 0% 0%, #e0f2fe 0, transparent 55%),
+                       radial-gradient(circle at 100% 0%, #f5e1ff 0, transparent 55%),
+                       radial-gradient(circle at 0% 100%, #d1fae5 0, transparent 55%),
+                       radial-gradient(circle at 100% 100%, #fee2e2 0, transparent 55%),
+                       #ffffff;
+            border-radius:24px;
+            padding:3rem 2.5rem;
+            box-shadow:0 24px 60px rgba(15,23,42,0.18);
+            border:1px solid rgba(148,163,184,0.35);
+          ">
+            <h1 style="
+              font-size:2.4rem;
+              margin:0 0 0.75rem;
+              text-align:center;
+              background:var(--gradient);
+              -webkit-background-clip:text;
+              color:transparent;
+            ">
+              Agata, wszystkiego najlepszego!
+            </h1>
+            <p style="
+              font-size:1.15rem;
+              margin:0 0 1.5rem;
+              text-align:center;
+              color:var(--muted);
+            ">
+              Sto lat i spełnienia wszystkich marzeń 💛
+            </p>
+            <div style="text-align:center;font-size:1.02rem;color:var(--text);margin-bottom:2rem;">
+              <p style="margin:0 0 0.6rem;">Życzymy Ci dużo radości, spokoju, pięknych podróży</p>
+              <p style="margin:0 0 0.6rem;">i jak najwięcej chwil, które będzie można długo wspominać.</p>
+              <p style="margin:0;">Dziękujemy, że jesteś!</p>
+            </div>
+
+            <div style="text-align:center;">
+              <div style="font-size:0.95rem;color:var(--muted);margin-bottom:1rem;">
+                Do odsłonięcia niespodzianki pozostało:
+              </div>
+              <div style="
+                display:inline-flex;
+                align-items:center;
+                gap:0.75rem;
+                padding:0.9rem 1.2rem;
+                border-radius:999px;
+                background:rgba(15,23,42,0.06);
+                backdrop-filter:blur(10px);
+                font-weight:600;
+                font-size:1.05rem;
+              ">
+                <div style="display:flex;flex-direction:column;align-items:center;min-width:64px;">
+                  <div style="font-size:1.4rem;font-variant-numeric:tabular-nums;">${days}</div>
+                  <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#6b7280;">dni</div>
+                </div>
+                <div style="font-size:1.4rem;color:#9ca3af;transform:translateY(-3px);">:</div>
+                <div style="display:flex;flex-direction:column;align-items:center;min-width:64px;">
+                  <div style="font-size:1.4rem;font-variant-numeric:tabular-nums;">${pad(hours)}</div>
+                  <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#6b7280;">godziny</div>
+                </div>
+                <div style="font-size:1.4rem;color:#9ca3af;transform:translateY(-3px);">:</div>
+                <div style="display:flex;flex-direction:column;align-items:center;min-width:64px;">
+                  <div style="font-size:1.4rem;font-variant-numeric:tabular-nums;">${pad(minutes)}</div>
+                  <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#6b7280;">minuty</div>
+                </div>
+                <div style="font-size:1.4rem;color:#9ca3af;transform:translateY(-3px);">:</div>
+                <div style="display:flex;flex-direction:column;align-items:center;min-width:64px;">
+                  <div style="font-size:1.4rem;font-variant-numeric:tabular-nums;">${pad(seconds)}</div>
+                  <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#6b7280;">sekundy</div>
+                </div>
+              </div>
+              <div style="margin-top:1rem;font-size:0.88rem;color:var(--muted);">
+                Strona odblokuje się automatycznie 24.02.2026 o 17:00.
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function initCountdown() {
+      var now = Date.now();
+      if (now >= unlockTime) {
+        // Po czasie – pokazujemy całą stronę (menu + treść + stopka)
+        pageWrapper.style.display = '';
+        countdownWrapper.style.display = 'none';
+      } else {
+        // Przed czasem – tylko ekran z życzeniami i zegarem
+        pageWrapper.style.display = 'none';
+        countdownWrapper.style.display = '';
+        renderCountdown();
+        setInterval(renderCountdown, 1000);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCountdown);
+    } else {
+      initCountdown();
+    }
+  })();
 </script>
 
 </body>
